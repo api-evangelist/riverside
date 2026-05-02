@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "riverside": "https://api-evangelist.github.io/riverside/vocab#",
+    "Recording": "schema:MediaObject",
+    "id": "schema:identifier",
+    "name": "schema:name",
+    "status": "schema:actionStatus",
+    "created_date": "schema:dateCreated",
+    "studio_id": "riverside:studioId",
+    "studio_name": "riverside:studioName",
+    "project_id": "riverside:projectId",
+    "project_name": "riverside:projectName",
+    "tracks": "riverside:tracks",
+    "Track": "schema:AudioObject",
+    "type": "schema:encodingFormat",
+    "files": "schema:associatedMedia",
+    "download_url": "schema:contentUrl",
+    "size": "schema:contentSize",
+    "transcription": "schema:Transcript",
+    "srt_url": "riverside:srtUrl",
+    "txt_url": "riverside:txtUrl",
+    "Production": "schema:CreativeWorkSeason",
+    "Studio": "riverside:Studio",
+    "Project": "riverside:Project",
+    "num_recordings": "riverside:recordingCount",
+    "Export": "riverside:Export",
+    "WebinarRegistrant": "schema:Person",
+    "email": "schema:email"
+  }
+}

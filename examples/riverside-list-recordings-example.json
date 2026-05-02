@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://platform.riverside.fm/api/v2/recordings",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY"
+    },
+    "queryParameters": {
+      "page": 0
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "page": 0,
+      "next_page_url": null,
+      "total_items": 1,
+      "total_pages": 1,
+      "data": [
+        {
+          "id": "rec_abc123",
+          "name": "Episode 42 - API Design Patterns",
+          "project_id": "proj_xyz789",
+          "project_name": "API Evangelist Podcast",
+          "studio_id": "studio_def456",
+          "studio_name": "Main Studio",
+          "status": "ready",
+          "created_date": "2026-04-28T15:30:00Z",
+          "tracks": [
+            {
+              "id": "track_001",
+              "type": "compressed_audio",
+              "status": "ready",
+              "files": [
+                {
+                  "type": "compressed_audio",
+                  "size": 52428800,
+                  "download_url": "https://downloads.riverside.fm/files/track_001.mp3"
+                }
+              ]
+            }
+          ],
+          "transcription": {
+            "status": "completed",
+            "srt_url": "https://downloads.riverside.fm/transcriptions/rec_abc123.srt",
+            "txt_url": "https://downloads.riverside.fm/transcriptions/rec_abc123.txt"
+          }
+        }
+      ]
+    }
+  }
+}

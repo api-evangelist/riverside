@@ -1,0 +1,289 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Riverside Podcast Production"
+  description: >-
+    Unified workflow capability for enterprise podcast and video production
+    using the Riverside Business API. Combines recording management,
+    transcription retrieval, export handling, and webinar registration into
+    workflows for content teams and production managers.
+  tags:
+    - Podcast
+    - Recording
+    - Media
+    - Content Creation
+    - Riverside
+    - Video
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RIVERSIDE_API_KEY: RIVERSIDE_API_KEY
+
+capability:
+  consumes:
+    - import: riverside
+      location: ./shared/riverside-business.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: riverside-production-api
+      description: "Unified REST API for Riverside podcast and video production workflows."
+      resources:
+        - path: /v1/productions
+          name: productions
+          description: "Production workspace management"
+          operations:
+            - method: GET
+              name: list-productions
+              description: "List all productions with associated studios and projects"
+              call: "riverside.list-workspace"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/recordings
+          name: recordings
+          description: "Recording management"
+          operations:
+            - method: GET
+              name: list-recordings
+              description: "List all recordings with optional studio, project, or date filters"
+              call: "riverside.list-all-recordings"
+              with:
+                studioId: "rest.studioId"
+                projectId: "rest.projectId"
+                start_date: "rest.start_date"
+                end_date: "rest.end_date"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/recordings/{recording-id}
+          name: recording-detail
+          description: "Individual recording"
+          operations:
+            - method: GET
+              name: get-recording
+              description: "Get a recording with tracks and metadata"
+              call: "riverside.get-recording"
+              with:
+                recording_id: "rest.recording-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-recording
+              description: "Permanently delete a recording"
+              call: "riverside.delete-recording"
+              with:
+                recording_id: "rest.recording-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/recordings/{recording-id}/transcription
+          name: transcription
+          description: "Transcription file access"
+          operations:
+            - method: GET
+              name: download-transcription
+              description: "Download transcription file in SRT or TXT format"
+              call: "riverside.download-transcription-file"
+              with:
+                recording_id: "rest.recording-id"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/exports
+          name: exports
+          description: "Export management"
+          operations:
+            - method: GET
+              name: list-exports
+              description: "List all exports in the workspace"
+              call: "riverside.list-all-exports"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/exports/{export-id}
+          name: export-detail
+          description: "Individual export"
+          operations:
+            - method: GET
+              name: get-export
+              description: "Get details for a specific export"
+              call: "riverside.get-export"
+              with:
+                export_id: "rest.export-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-export
+              description: "Delete an export"
+              call: "riverside.delete-export"
+              with:
+                export_id: "rest.export-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/webinars/{webinar-id}/registrants
+          name: webinar-registrants
+          description: "Webinar registration"
+          operations:
+            - method: POST
+              name: register-participant
+              description: "Register a participant for a webinar"
+              call: "riverside.create-webinar-registrant"
+              with:
+                webinar_id: "rest.webinar-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: list-registrants
+              description: "List all webinar registrants"
+              call: "riverside.get-registrants"
+              with:
+                webinar_id: "rest.webinar-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: riverside-production-mcp
+      transport: http
+      description: "MCP server for AI-assisted Riverside podcast production workflows."
+      tools:
+        - name: list-productions
+          description: "List all workspace productions with their studios and projects"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "riverside.list-workspace"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-recordings
+          description: "List recordings, optionally filtered by studio, project, or date range"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "riverside.list-all-recordings"
+          with:
+            studioId: "tools.studioId"
+            projectId: "tools.projectId"
+            start_date: "tools.start_date"
+            end_date: "tools.end_date"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-recording
+          description: "Retrieve a single recording with tracks and transcription status"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "riverside.get-recording"
+          with:
+            recording_id: "tools.recording_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-recording
+          description: "Permanently delete a recording and all its files"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "riverside.delete-recording"
+          with:
+            recording_id: "tools.recording_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: download-transcription
+          description: "Download a recording transcription in SRT or TXT format"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "riverside.download-transcription-file"
+          with:
+            recording_id: "tools.recording_id"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-exports
+          description: "List all exports in the workspace"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "riverside.list-all-exports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-export
+          description: "Get details for a specific export"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "riverside.get-export"
+          with:
+            export_id: "tools.export_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-export
+          description: "Delete an export"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "riverside.delete-export"
+          with:
+            export_id: "tools.export_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: register-webinar-participant
+          description: "Register a participant for a scheduled webinar"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "riverside.create-webinar-registrant"
+          with:
+            webinar_id: "tools.webinar_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-webinar-registrants
+          description: "List all registrants for a webinar session"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "riverside.get-registrants"
+          with:
+            webinar_id: "tools.webinar_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

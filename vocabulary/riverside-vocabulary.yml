@@ -1,0 +1,113 @@
+vocabulary:
+  name: Riverside Podcast Production Vocabulary
+  description: >-
+    Domain vocabulary for the Riverside platform, covering podcast recording,
+    video production, transcription, and media management concepts.
+  version: "1.0.0"
+  created: "2026-05-02"
+
+terms:
+  - term: Recording
+    definition: >-
+      A captured audio and/or video session containing one or more participant
+      tracks. The primary media object in the Riverside platform.
+    category: Media Object
+    relatedTerms:
+      - Track
+      - Studio
+      - Project
+      - Transcription
+
+  - term: Production
+    definition: >-
+      A top-level container organizing studios, projects, and recordings within
+      a workspace. Represents a show, brand, or production unit.
+    category: Organization
+    relatedTerms:
+      - Studio
+      - Project
+
+  - term: Studio
+    definition: >-
+      A virtual recording environment within a production, configured for
+      specific shows or content types.
+    category: Organization
+    relatedTerms:
+      - Production
+      - Project
+      - Recording
+
+  - term: Project
+    definition: >-
+      An organizational grouping of recordings within a studio, typically
+      corresponding to a podcast series or campaign.
+    category: Organization
+    relatedTerms:
+      - Studio
+      - Recording
+
+  - term: Track
+    definition: >-
+      An individual audio or video stream captured from a single participant
+      during a recording session.
+    category: Media Object
+    relatedTerms:
+      - Recording
+      - File
+
+  - term: Transcription
+    definition: >-
+      An automatically generated text transcript of a recording's audio content,
+      available in SRT and TXT formats.
+    category: Media Feature
+    relatedTerms:
+      - Recording
+      - Track
+
+  - term: Export
+    definition: >-
+      A processed output file derived from a recording, typically after
+      editing, mixing, or format conversion.
+    category: Media Object
+    relatedTerms:
+      - Recording
+
+  - term: BusinessAPI
+    definition: >-
+      The enterprise-tier API from Riverside providing programmatic access
+      to recording management, only available on Business plan.
+    category: Platform Feature
+
+  - term: Webinar
+    definition: >-
+      A live video broadcast session in Riverside with registration management
+      for audience participants.
+    category: Content Type
+    relatedTerms:
+      - Registrant
+
+  - term: Registrant
+    definition: >-
+      A person who has registered to attend a Riverside webinar session.
+    category: Participant
+    relatedTerms:
+      - Webinar
+
+  - term: RateLimiting
+    definition: >-
+      API request throttling applied to Riverside endpoints — typically once
+      per second for list operations and once per 10 seconds per unique
+      recording ID.
+    category: API Concept
+
+  - term: LocalRecording
+    definition: >-
+      High-quality audio/video captured locally on each participant's device
+      to avoid network quality degradation.
+    category: Recording Technology
+
+  - term: RemoteStudio
+    definition: >-
+      A virtual recording environment connecting distributed participants at
+      studio quality via Riverside's platform.
+    category: Product Feature

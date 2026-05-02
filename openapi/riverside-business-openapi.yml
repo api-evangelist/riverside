@@ -1,0 +1,632 @@
+openapi: 3.0.3
+info:
+  title: Riverside Business API
+  description: >-
+    The Riverside Business API provides programmatic access to recording
+    management, production workflows, studio and project organization, file
+    downloads, transcription retrieval, export management, and webinar
+    registration. Available on the Business plan with custom pricing.
+    Authentication uses API key bearer tokens.
+  version: v3
+  contact:
+    name: Riverside Support
+    url: https://support.riverside.fm
+  license:
+    name: Proprietary
+servers:
+  - url: https://platform.riverside.fm
+    description: Riverside Platform API
+
+tags:
+  - name: Recordings
+    description: Recording management and retrieval
+  - name: Productions
+    description: Production workspace organization
+  - name: Exports
+    description: Export file management and downloads
+  - name: Webinars
+    description: Webinar registration management
+
+paths:
+  /api/v3/productions:
+    get:
+      operationId: listWorkspace
+      summary: List Workspace Productions
+      description: >-
+        Retrieves all productions in your workspace, including their associated
+        studios and projects. Rate limited to one request per second.
+      tags:
+        - Productions
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of productions with studios and projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Production'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /api/v2/recordings:
+    get:
+      operationId: listAllRecordings
+      summary: List All Recordings
+      description: >-
+        Retrieves all recordings in your workspace with pagination support.
+        Can be filtered by studio, project, or date range. Returns newest
+        recordings first with a default cap of 20 per page.
+        Rate limited to once every 10 seconds per unique request.
+      tags:
+        - Recordings
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: studioId
+          in: query
+          schema:
+            type: string
+          description: Filter recordings by studio ID
+        - name: projectId
+          in: query
+          schema:
+            type: string
+          description: Filter recordings by project ID
+        - name: start_date
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter recordings created on or after this date (YYYY-MM-DD)
+        - name: end_date
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter recordings created on or before this date (YYYY-MM-DD)
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+          description: Page number for pagination (defaults to 0)
+      responses:
+        '200':
+          description: Paginated list of recordings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordingList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/recordings/{recording_id}:
+    get:
+      operationId: getRecording
+      summary: Get Recording
+      description: >-
+        Retrieves a single recording with associated tracks and metadata.
+        Rate limited to one request per 10 seconds per unique recording ID.
+      tags:
+        - Recordings
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: recording_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The recording ID (obtainable via "Copy Recording ID" in the recording menu)
+      responses:
+        '200':
+          description: Recording details with tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: deleteRecording
+      summary: Delete Recording
+      description: Permanently deletes a recording and all its associated files.
+      tags:
+        - Recordings
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: recording_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The recording ID to delete
+      responses:
+        '204':
+          description: Recording deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/recordings/{recording_id}/files/{file_id}/download:
+    get:
+      operationId: downloadFile
+      summary: Download File
+      description: Download a specific file associated with a recording track.
+      tags:
+        - Recordings
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: recording_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The recording ID
+        - name: file_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The file ID to download
+      responses:
+        '200':
+          description: File download stream
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/recordings/{recording_id}/transcription/download:
+    get:
+      operationId: downloadTranscriptionFile
+      summary: Download Transcription File
+      description: Download the transcription file for a recording in SRT or TXT format.
+      tags:
+        - Recordings
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: recording_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The recording ID
+        - name: format
+          in: query
+          schema:
+            type: string
+            enum:
+              - srt
+              - txt
+            default: srt
+          description: Transcription file format
+      responses:
+        '200':
+          description: Transcription file content
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/exports:
+    get:
+      operationId: listAllExports
+      summary: List All Exports
+      description: Retrieves all exports in the workspace.
+      tags:
+        - Exports
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of exports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Export'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/exports/{export_id}:
+    get:
+      operationId: getExport
+      summary: Get Export
+      description: Retrieves details for a specific export by ID.
+      tags:
+        - Exports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: export_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The export ID
+      responses:
+        '200':
+          description: Export details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: deleteExport
+      summary: Delete Export
+      description: Permanently deletes an export.
+      tags:
+        - Exports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: export_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The export ID to delete
+      responses:
+        '204':
+          description: Export deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/exports/{export_id}/download:
+    get:
+      operationId: downloadExportFile
+      summary: Download Export File
+      description: Download the exported file content.
+      tags:
+        - Exports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: export_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The export ID to download
+      responses:
+        '200':
+          description: Export file download stream
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/webinars/{webinar_id}/registrants:
+    post:
+      operationId: createWebinarRegistrant
+      summary: Create Webinar Registrant
+      description: Register a participant for a webinar session.
+      tags:
+        - Webinars
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: webinar_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The webinar ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebinarRegistrant'
+      responses:
+        '201':
+          description: Registrant created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebinarRegistrantResponse'
+        '400':
+          description: Bad request
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+    get:
+      operationId: getRegistrants
+      summary: Get Registrants
+      description: Retrieves all registrants for a webinar.
+      tags:
+        - Webinars
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: webinar_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The webinar ID
+      responses:
+        '200':
+          description: List of webinar registrants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WebinarRegistrantResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API Key passed as Bearer token in Authorization header
+
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Production:
+      type: object
+      description: A top-level production container within a workspace
+      properties:
+        id:
+          type: string
+          description: Unique production identifier
+        name:
+          type: string
+          description: Production name
+        created_date:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        num_recordings:
+          type: integer
+          description: Total number of recordings in this production
+        studios:
+          type: array
+          items:
+            $ref: '#/components/schemas/Studio'
+
+    Studio:
+      type: object
+      description: A studio sub-resource within a production
+      properties:
+        id:
+          type: string
+          description: Unique studio identifier
+        name:
+          type: string
+          description: Studio name
+        created_date:
+          type: string
+          format: date-time
+        num_recordings:
+          type: integer
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+
+    Project:
+      type: object
+      description: A project sub-resource within a studio
+      properties:
+        id:
+          type: string
+          description: Unique project identifier
+        name:
+          type: string
+          description: Project name
+        created_date:
+          type: string
+          format: date-time
+
+    Recording:
+      type: object
+      description: A recording session with tracks and metadata
+      properties:
+        id:
+          type: string
+          description: Unique recording identifier
+        name:
+          type: string
+          description: Recording name
+        project_id:
+          type: string
+        project_name:
+          type: string
+        studio_id:
+          type: string
+        studio_name:
+          type: string
+        status:
+          type: string
+          example: ready
+          description: Recording processing status
+        created_date:
+          type: string
+          format: date-time
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+        transcription:
+          $ref: '#/components/schemas/Transcription'
+
+    Track:
+      type: object
+      description: An individual audio or video track within a recording
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Track type (e.g., compressed_audio, raw_video)
+        status:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackFile'
+
+    TrackFile:
+      type: object
+      properties:
+        type:
+          type: string
+          description: File type (e.g., compressed_audio, raw_video)
+        size:
+          type: integer
+          description: File size in bytes
+        download_url:
+          type: string
+          format: uri
+          description: Temporary URL for file download
+
+    Transcription:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Transcription processing status
+        srt_url:
+          type: string
+          format: uri
+          description: URL to download SRT transcription file
+        txt_url:
+          type: string
+          format: uri
+          description: URL to download TXT transcription file
+
+    RecordingList:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        next_page_url:
+          type: string
+          format: uri
+          description: URL to the next page of results
+        total_items:
+          type: integer
+          description: Total number of recordings
+        total_pages:
+          type: integer
+          description: Total number of pages
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recording'
+
+    Export:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique export identifier
+        recording_id:
+          type: string
+        status:
+          type: string
+          description: Export processing status
+        created_date:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+          format: uri
+
+    WebinarRegistrant:
+      type: object
+      required:
+        - email
+        - name
+      properties:
+        email:
+          type: string
+          format: email
+          description: Registrant email address
+        name:
+          type: string
+          description: Registrant full name
+        custom_fields:
+          type: object
+          additionalProperties: true
+
+    WebinarRegistrantResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        registered_at:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string

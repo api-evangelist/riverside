@@ -1,0 +1,36 @@
+{
+  "title": "Riverside Recording",
+  "description": "Structure documentation for the Riverside Business API recording object",
+  "type": "object",
+  "fields": [
+    { "name": "id", "type": "string", "required": true, "description": "Unique recording identifier" },
+    { "name": "name", "type": "string", "required": true, "description": "Recording session name" },
+    { "name": "project_id", "type": "string", "required": false, "description": "Parent project identifier" },
+    { "name": "project_name", "type": "string", "required": false, "description": "Parent project name" },
+    { "name": "studio_id", "type": "string", "required": false, "description": "Parent studio identifier" },
+    { "name": "studio_name", "type": "string", "required": false, "description": "Parent studio name" },
+    { "name": "status", "type": "string", "required": false, "description": "Processing status (e.g. ready)" },
+    { "name": "created_date", "type": "datetime", "required": false, "description": "Creation timestamp" },
+    { "name": "tracks", "type": "array", "required": false, "description": "Audio/video tracks",
+      "items": [
+        { "name": "id", "type": "string", "required": true },
+        { "name": "type", "type": "string", "required": false, "description": "Track type (compressed_audio, raw_video)" },
+        { "name": "status", "type": "string", "required": false },
+        { "name": "files", "type": "array", "required": false, "description": "Downloadable track files",
+          "items": [
+            { "name": "type", "type": "string", "required": false },
+            { "name": "size", "type": "integer", "required": false, "description": "File size in bytes" },
+            { "name": "download_url", "type": "uri", "required": false }
+          ]
+        }
+      ]
+    },
+    { "name": "transcription", "type": "object", "required": false,
+      "fields": [
+        { "name": "status", "type": "string", "required": false },
+        { "name": "srt_url", "type": "uri", "required": false, "description": "SRT format download URL" },
+        { "name": "txt_url", "type": "uri", "required": false, "description": "TXT format download URL" }
+      ]
+    }
+  ]
+}

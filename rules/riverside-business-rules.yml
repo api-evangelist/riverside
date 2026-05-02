@@ -1,0 +1,115 @@
+extends: spectral:oas
+rules:
+  # Riverside Business API Conventions
+
+  riverside-operation-has-tag:
+    description: All operations must have at least one tag
+    message: Operation {{path}} is missing a tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  riverside-operation-has-summary:
+    description: All operations must have a summary
+    message: Operation {{path}} is missing a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  riverside-operation-has-operation-id:
+    description: All operations must have an operationId
+    message: Operation {{path}} is missing an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  riverside-api-key-auth:
+    description: API should use Bearer/API key authentication
+    message: Security scheme should use http bearer or apiKey type
+    severity: warn
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - http
+                - apiKey
+
+  riverside-recording-id-path-param:
+    description: Recording endpoints should use recording_id as path parameter
+    message: Recording path parameter should be named recording_id
+    severity: info
+    given: "$.paths['/api/v1/recordings/{recording_id}'][*].parameters[?(@.in === 'path')]"
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^recording_id$"
+
+  riverside-responses-have-200:
+    description: GET operations should have a 200 response
+    message: GET operation {{path}} should have a 200 response
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: truthy
+
+  riverside-delete-returns-204:
+    description: DELETE operations should return 204 No Content
+    message: DELETE operation {{path}} should return 204
+    severity: warn
+    given: "$.paths[*].delete"
+    then:
+      field: responses.204
+      function: truthy
+
+  riverside-pagination-uses-page:
+    description: Paginated list endpoints should use page parameter
+    message: List endpoint {{path}} should support pagination with page parameter
+    severity: info
+    given: "$.paths[*].get.parameters[?(@.name === 'page')]"
+    then:
+      field: schema.type
+      function: pattern
+      functionOptions:
+        match: "^integer$"
+
+  riverside-schema-has-description:
+    description: Schema components should have descriptions
+    message: Schema {{path}} is missing a description
+    severity: info
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  riverside-rate-limit-documented:
+    description: Operations should document rate limiting in description
+    message: Operation {{path}} should describe rate limits
+    severity: info
+    given: "$.paths[*][get,post]"
+    then:
+      field: description
+      function: truthy
+
+  riverside-versioned-paths:
+    description: API paths should include version prefix (v1, v2, v3)
+    message: Path {{path}} should include a version prefix
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/v[0-9]+"
