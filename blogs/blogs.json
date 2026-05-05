@@ -1,0 +1,13 @@
+{
+  "repo": "riverside",
+  "feeds": [
+    {
+      "source": "https://riverside.fm/blog",
+      "feed_url": "https://riverside.com/blog/rss.xml",
+      "saved": 10,
+      "title": "Riverside.fm Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:35:17Z"
+}
