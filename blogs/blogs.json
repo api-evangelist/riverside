@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://riverside.fm/blog",
-      "feed_url": "https://riverside.com/blog/rss.xml",
-      "saved": 10,
-      "title": "Riverside.fm Blog"
+      "feed_url": "https://riverside.fm/blog/rss.xml",
+      "title": "Riverside.fm Blog",
+      "saved": 0
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:35:17Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
