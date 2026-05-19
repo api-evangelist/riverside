@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Riverside Business API — Productions
+  description: 'Riverside Business API — Productions. 1 operations. Lead operation: List Workspace Productions. Self-contained
+    Naftiko capability covering one Riverside business surface.'
+  tags:
+  - Riverside
+  - Productions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RIVERSIDE_API_KEY: RIVERSIDE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: business-productions
+    baseUri: https://platform.riverside.fm
+    description: Riverside Business API — Productions business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-productions
+      path: /api/v3/productions
+      operations:
+      - name: listworkspace
+        method: GET
+        description: List Workspace Productions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RIVERSIDE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: business-productions-rest
+    port: 8080
+    description: REST adapter for Riverside Business API — Productions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/productions
+      name: api-v3-productions
+      description: REST surface for api-v3-productions.
+      operations:
+      - method: GET
+        name: listworkspace
+        description: List Workspace Productions
+        call: business-productions.listworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: business-productions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Riverside Business API — Productions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-workspace-productions
+      description: List Workspace Productions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: business-productions.listworkspace
+      outputParameters:
+      - type: object
+        mapping: $.

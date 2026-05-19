@@ -1,0 +1,189 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Riverside Business API — Exports
+  description: 'Riverside Business API — Exports. 4 operations. Lead operation: List All Exports. Self-contained Naftiko capability
+    covering one Riverside business surface.'
+  tags:
+  - Riverside
+  - Exports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RIVERSIDE_API_KEY: RIVERSIDE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: business-exports
+    baseUri: https://platform.riverside.fm
+    description: Riverside Business API — Exports business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-exports
+      path: /api/v1/exports
+      operations:
+      - name: listallexports
+        method: GET
+        description: List All Exports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-exports-export_id
+      path: /api/v1/exports/{export_id}
+      operations:
+      - name: getexport
+        method: GET
+        description: Get Export
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: export_id
+          in: path
+          type: string
+          description: The export ID
+          required: true
+      - name: deleteexport
+        method: DELETE
+        description: Delete Export
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: export_id
+          in: path
+          type: string
+          description: The export ID to delete
+          required: true
+    - name: api-v1-exports-export_id-download
+      path: /api/v1/exports/{export_id}/download
+      operations:
+      - name: downloadexportfile
+        method: GET
+        description: Download Export File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: export_id
+          in: path
+          type: string
+          description: The export ID to download
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RIVERSIDE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: business-exports-rest
+    port: 8080
+    description: REST adapter for Riverside Business API — Exports. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/exports
+      name: api-v1-exports
+      description: REST surface for api-v1-exports.
+      operations:
+      - method: GET
+        name: listallexports
+        description: List All Exports
+        call: business-exports.listallexports
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/exports/{export-id}
+      name: api-v1-exports-export-id
+      description: REST surface for api-v1-exports-export_id.
+      operations:
+      - method: GET
+        name: getexport
+        description: Get Export
+        call: business-exports.getexport
+        with:
+          export_id: rest.export_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteexport
+        description: Delete Export
+        call: business-exports.deleteexport
+        with:
+          export_id: rest.export_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/exports/{export-id}/download
+      name: api-v1-exports-export-id-download
+      description: REST surface for api-v1-exports-export_id-download.
+      operations:
+      - method: GET
+        name: downloadexportfile
+        description: Download Export File
+        call: business-exports.downloadexportfile
+        with:
+          export_id: rest.export_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: business-exports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Riverside Business API — Exports. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-exports
+      description: List All Exports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: business-exports.listallexports
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-export
+      description: Get Export
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: business-exports.getexport
+      with:
+        export_id: tools.export_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-export
+      description: Delete Export
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: business-exports.deleteexport
+      with:
+        export_id: tools.export_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-export-file
+      description: Download Export File
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: business-exports.downloadexportfile
+      with:
+        export_id: tools.export_id
+      outputParameters:
+      - type: object
+        mapping: $.
