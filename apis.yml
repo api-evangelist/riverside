@@ -101,6 +101,8 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-ld/riverside-context.jsonld
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/vocabulary/riverside-vocabulary.yml
+  - type: LLMsTxt
+    url: https://docs.riverside.fm/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
