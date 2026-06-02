@@ -2,12 +2,20 @@
   "repo": "riverside",
   "feeds": [
     {
-      "source": "https://riverside.fm/blog",
+      "source": "https://riverside.fm/blog/rss.xml",
       "feed_url": "https://riverside.fm/blog/rss.xml",
-      "title": "Riverside.fm Blog",
-      "saved": 50
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://riverside.fm/pricing",
+      "feed_url": "https://riverside.fm/pricing",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 60,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 77,
+  "fetched": "2026-06-01T23:35:02Z"
 }
