@@ -1,95 +1,72 @@
-# Riverside
+# Riverside (riverside)
 
-Riverside is a professional podcast and video recording platform that enables remote studio-quality recording, AI-powered editing, and publishing. The Riverside Business API provides programmatic access to recordings, productions, studios, projects, exports, transcriptions, and webinar management for enterprise podcast production workflows. API access is available on the Business plan only.
+Riverside is a professional podcast and video recording platform that enables remote studio-quality recording, AI-powered editing, and publishing. The Riverside Business API provides programmatic access to recordings, productions, studios, projects, exports, transcriptions, and webinar management for enterprise podcast production workflows. API access is available on Business plan only.
 
-**Website:** [https://riverside.fm](https://riverside.fm)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/apis.yml)
 
-**Documentation:** [https://docs.riverside.fm/](https://docs.riverside.fm/)
+## Scope
+
+- **Type:** Index
+
+## Tags
+
+- Podcast
+- Video Recording
+- Media
+- Content Creation
+- Audio
+
+## Timestamps
+
+- **Created:** 2026-03-16
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Riverside Business API
 
-The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Authentication uses API key bearer tokens.
+The Riverside Business API provides access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Authentication uses API key bearer tokens available on Business plan. Base URL is https://platform.riverside.fm with v2 and v3 versioned paths.
 
+- **Human URL:** [https://docs.riverside.fm/](https://docs.riverside.fm/)
 - **Base URL:** `https://platform.riverside.fm`
-- **Authentication:** API Key (Bearer Token)
-- **Documentation:** [https://docs.riverside.fm/endpoints-reference/v3/](https://docs.riverside.fm/endpoints-reference/v3/)
-- **Getting Started:** [https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API](https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API)
 
-#### Endpoints
+#### Tags
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/v3/productions` | List workspace productions with studios and projects |
-| GET | `/api/v2/recordings` | List all recordings with filters |
-| GET | `/api/v1/recordings/{recording_id}` | Get a specific recording with tracks |
-| DELETE | `/api/v1/recordings/{recording_id}` | Delete a recording |
-| GET | `/api/v1/recordings/{recording_id}/transcription/download` | Download transcription (SRT/TXT) |
-| GET | `/api/v1/exports` | List all exports |
-| GET | `/api/v1/exports/{export_id}` | Get a specific export |
-| DELETE | `/api/v1/exports/{export_id}` | Delete an export |
-| GET | `/api/v1/exports/{export_id}/download` | Download export file |
-| POST | `/api/v1/webinars/{webinar_id}/registrants` | Register a webinar participant |
-| GET | `/api/v1/webinars/{webinar_id}/registrants` | List webinar registrants |
+- Podcast
+- Recording
+- Media
+- Video
+- Audio
+- Transcription
 
-## Artifacts
+#### Properties
 
-### OpenAPI Specifications
+- [Documentation](https://docs.riverside.fm/endpoints-reference/v3/)
+- [Getting Started](https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/openapi/riverside-business-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/rules/riverside-business-rules.yml)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-schema/riverside-recording-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Postman Collection](collections/riverside-business.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/riverside-business.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-| Spec | Description |
-|------|-------------|
-| [openapi/riverside-business-openapi.yml](openapi/riverside-business-openapi.yml) | Riverside Business API — recordings, productions, exports, transcriptions, webinars |
+## Common Properties
 
-### Spectral Rules
-
-| Ruleset | Description |
-|---------|-------------|
-| [rules/riverside-business-rules.yml](rules/riverside-business-rules.yml) | Riverside API linting rules enforcing versioned paths, rate limit documentation |
-
-### Capabilities
-
-| Capability | Description |
-|------------|-------------|
-| [capabilities/podcast-production.yaml](capabilities/podcast-production.yaml) | Unified workflow for enterprise podcast and video production |
-| [capabilities/shared/riverside-business.yaml](capabilities/shared/riverside-business.yaml) | Shared Riverside Business API consumed definition |
-
-### JSON Schemas
-
-| Schema | Description |
-|--------|-------------|
-| [json-schema/riverside-recording-schema.json](json-schema/riverside-recording-schema.json) | Recording object with tracks, transcription, and metadata |
-
-### JSON Structure
-
-| Structure | Description |
-|-----------|-------------|
-| [json-structure/riverside-recording-structure.json](json-structure/riverside-recording-structure.json) | Field-by-field documentation of the recording object |
-
-### JSON-LD Context
-
-| Context | Description |
-|---------|-------------|
-| [json-ld/riverside-context.jsonld](json-ld/riverside-context.jsonld) | Linked data context mapping Riverside terms to schema.org |
-
-### Examples
-
-| Example | Description |
-|---------|-------------|
-| [examples/riverside-list-recordings-example.json](examples/riverside-list-recordings-example.json) | List workspace recordings with paginated response |
-
-### Vocabulary
-
-| Vocabulary | Description |
-|------------|-------------|
-| [vocabulary/riverside-vocabulary.yml](vocabulary/riverside-vocabulary.yml) | Podcast production terms including Recording, Studio, Production, Transcription |
-
-## Tags
-
-Podcast, Video Recording, Media, Content Creation, Audio
+- [GitHub Organization](https://github.com/riversidefm)
+- [LinkedIn](https://www.linkedin.com/company/the-riverside-company)
+- [Website](https://riverside.fm)
+- [Documentation](https://docs.riverside.fm/)
+- [Support](https://support.riverside.fm)
+- [Pricing](https://riverside.fm/pricing)
+- [Blog](https://riverside.fm/blog)
+- [Privacy Policy](https://riverside.fm/privacy-policy)
+- [Terms of Service](https://riverside.fm/terms-of-service)
+- [Sign Up](https://riverside.fm/signup)
+- [Login](https://riverside.fm/login)
+- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-ld/riverside-context.jsonld)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/vocabulary/riverside-vocabulary.yml)
+- [L L Ms Txt](https://docs.riverside.fm/llms.txt)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

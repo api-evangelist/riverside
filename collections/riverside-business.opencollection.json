@@ -1,0 +1,342 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Riverside Business API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Productions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspace Productions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v3/productions",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all productions in your workspace, including their associated studios and projects. Rate limited to one request per second."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v2/recordings",
+            "params": [
+              {
+                "name": "studioId",
+                "value": "",
+                "type": "query",
+                "description": "Filter recordings by studio ID"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter recordings by project ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter recordings created on or after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter recordings created on or before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (defaults to 0)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all recordings in your workspace with pagination support. Can be filtered by studio, project, or date range. Returns newest recordings first with a default cap of 20 per page. Rate limited to once every 10 seconds per unique request."
+        },
+        {
+          "info": {
+            "name": "Get Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/recordings/:recording_id",
+            "params": [
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path",
+                "description": "The recording ID (obtainable via \"Copy Recording ID\" in the recording menu)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a single recording with associated tracks and metadata. Rate limited to one request per 10 seconds per unique recording ID."
+        },
+        {
+          "info": {
+            "name": "Delete Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://platform.riverside.fm/api/v1/recordings/:recording_id",
+            "params": [
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path",
+                "description": "The recording ID to delete"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently deletes a recording and all its associated files."
+        },
+        {
+          "info": {
+            "name": "Download File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/recordings/:recording_id/files/:file_id/download",
+            "params": [
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path",
+                "description": "The recording ID"
+              },
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path",
+                "description": "The file ID to download"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download a specific file associated with a recording track."
+        },
+        {
+          "info": {
+            "name": "Download Transcription File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/recordings/:recording_id/transcription/download",
+            "params": [
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path",
+                "description": "The recording ID"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Transcription file format"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download the transcription file for a recording in SRT or TXT format."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/exports",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all exports in the workspace."
+        },
+        {
+          "info": {
+            "name": "Get Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/exports/:export_id",
+            "params": [
+              {
+                "name": "export_id",
+                "value": "",
+                "type": "path",
+                "description": "The export ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves details for a specific export by ID."
+        },
+        {
+          "info": {
+            "name": "Delete Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://platform.riverside.fm/api/v1/exports/:export_id",
+            "params": [
+              {
+                "name": "export_id",
+                "value": "",
+                "type": "path",
+                "description": "The export ID to delete"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently deletes an export."
+        },
+        {
+          "info": {
+            "name": "Download Export File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/exports/:export_id/download",
+            "params": [
+              {
+                "name": "export_id",
+                "value": "",
+                "type": "path",
+                "description": "The export ID to download"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download the exported file content."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webinars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Registrants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/webinars/:webinar_id/registrants",
+            "params": [
+              {
+                "name": "webinar_id",
+                "value": "",
+                "type": "path",
+                "description": "The webinar ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all registrants for a webinar."
+        },
+        {
+          "info": {
+            "name": "Create Webinar Registrant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.riverside.fm/api/v1/webinars/:webinar_id/registrants",
+            "params": [
+              {
+                "name": "webinar_id",
+                "value": "",
+                "type": "path",
+                "description": "The webinar ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Register a participant for a webinar session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,10 +2,10 @@
   "repo": "riverside",
   "feeds": [
     {
-      "source": "https://riverside.fm/blog/rss.xml",
-      "feed_url": "https://riverside.fm/blog/rss.xml",
+      "source": "https://riverside.com/blog/rss.xml",
+      "feed_url": "https://riverside.com/blog/rss.xml",
       "title": "",
-      "saved": 0,
+      "saved": 24,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 77,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 104,
+  "fetched": "2026-06-14T20:42:17Z"
 }
