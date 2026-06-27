@@ -88,7 +88,7 @@ common:
     url: https://riverside.fm/privacy-policy
   - type: TermsOfService
     url: https://riverside.fm/terms-of-service
-  - type: SignUp
+  - type: Signup
     url: https://riverside.fm/signup
   - type: Login
     url: https://riverside.fm/login
@@ -96,7 +96,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-ld/riverside-context.jsonld
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/vocabulary/riverside-vocabulary.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.riverside.fm/llms.txt
 maintainers:
   - FN: Kin Lane
