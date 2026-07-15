@@ -70,6 +70,8 @@ apis:
       - Video Recording
       - Content Creation Platform
 common:
+  - type: AgenticAccess
+    url: agentic-access/riverside-agentic-access.yml
   - type: DomainSecurity
     url: security/riverside-domain-security.yml
   - type: Authentication
