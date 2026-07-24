@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Riverside Business Exports API
+  description: The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.
+  version: v3
+  contact:
+    name: Riverside Support
+    url: https://support.riverside.fm
+  license:
+    name: Proprietary
+servers:
+- url: https://platform.riverside.fm
+  description: Riverside Platform API
+tags:
+- name: Exports
+  description: Export file management and downloads
+paths:
+  /api/v1/exports:
+    get:
+      operationId: listAllExports
+      summary: List All Exports
+      description: Retrieves all exports in the workspace.
+      tags:
+      - Exports
+      security:
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of exports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Export'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v1/exports/{export_id}:
+    get:
+      operationId: getExport
+      summary: Get Export
+      description: Retrieves details for a specific export by ID.
+      tags:
+      - Exports
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: export_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The export ID
+      responses:
+        '200':
+          description: Export details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteExport
+      summary: Delete Export
+      description: Permanently deletes an export.
+      tags:
+      - Exports
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: export_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The export ID to delete
+      responses:
+        '204':
+          description: Export deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/v1/exports/{export_id}/download:
+    get:
+      operationId: downloadExportFile
+      summary: Download Export File
+      description: Download the exported file content.
+      tags:
+      - Exports
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: export_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The export ID to download
+      responses:
+        '200':
+          description: Export file download stream
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    Export:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique export identifier
+        recording_id:
+          type: string
+        status:
+          type: string
+          description: Export processing status
+        created_date:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+          format: uri
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API Key passed as Bearer token in Authorization header

@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: Riverside Business Exports Webinars API
+  description: The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.
+  version: v3
+  contact:
+    name: Riverside Support
+    url: https://support.riverside.fm
+  license:
+    name: Proprietary
+servers:
+- url: https://platform.riverside.fm
+  description: Riverside Platform API
+tags:
+- name: Webinars
+  description: Webinar registration management
+paths:
+  /api/v1/webinars/{webinar_id}/registrants:
+    post:
+      operationId: createWebinarRegistrant
+      summary: Create Webinar Registrant
+      description: Register a participant for a webinar session.
+      tags:
+      - Webinars
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: webinar_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The webinar ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebinarRegistrant'
+      responses:
+        '201':
+          description: Registrant created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebinarRegistrantResponse'
+        '400':
+          description: Bad request
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: getRegistrants
+      summary: Get Registrants
+      description: Retrieves all registrants for a webinar.
+      tags:
+      - Webinars
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: webinar_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The webinar ID
+      responses:
+        '200':
+          description: List of webinar registrants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WebinarRegistrantResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    WebinarRegistrantResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        registered_at:
+          type: string
+          format: date-time
+    WebinarRegistrant:
+      type: object
+      required:
+      - email
+      - name
+      properties:
+        email:
+          type: string
+          format: email
+          description: Registrant email address
+        name:
+          type: string
+          description: Registrant full name
+        custom_fields:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API Key passed as Bearer token in Authorization header

@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Riverside Business Exports Productions API
+  description: The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.
+  version: v3
+  contact:
+    name: Riverside Support
+    url: https://support.riverside.fm
+  license:
+    name: Proprietary
+servers:
+- url: https://platform.riverside.fm
+  description: Riverside Platform API
+tags:
+- name: Productions
+  description: Production workspace organization
+paths:
+  /api/v3/productions:
+    get:
+      operationId: listWorkspace
+      summary: List Workspace Productions
+      description: Retrieves all productions in your workspace, including their associated studios and projects. Rate limited to one request per second.
+      tags:
+      - Productions
+      security:
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of productions with studios and projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Production'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Project:
+      type: object
+      description: A project sub-resource within a studio
+      properties:
+        id:
+          type: string
+          description: Unique project identifier
+        name:
+          type: string
+          description: Project name
+        created_date:
+          type: string
+          format: date-time
+    Production:
+      type: object
+      description: A top-level production container within a workspace
+      properties:
+        id:
+          type: string
+          description: Unique production identifier
+        name:
+          type: string
+          description: Production name
+        created_date:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        num_recordings:
+          type: integer
+          description: Total number of recordings in this production
+        studios:
+          type: array
+          items:
+            $ref: '#/components/schemas/Studio'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    Studio:
+      type: object
+      description: A studio sub-resource within a production
+      properties:
+        id:
+          type: string
+          description: Unique studio identifier
+        name:
+          type: string
+          description: Studio name
+        created_date:
+          type: string
+          format: date-time
+        num_recordings:
+          type: integer
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API Key passed as Bearer token in Authorization header
