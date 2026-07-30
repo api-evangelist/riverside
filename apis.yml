@@ -6,7 +6,20 @@ description: >-
   productions, studios, projects, exports, transcriptions, and webinar management for enterprise podcast production
   workflows. API access is available on Business plan only.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/riverside.png
 tags:
   - Podcast
   - Video Recording
@@ -18,58 +31,89 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: riverside:riverside-business-api
-    name: Riverside Business API
-    description: >-
-      The Riverside Business API provides access to recording management, production workflows, studio and project
-      organization, file downloads, transcription retrieval, export management, and webinar registration. Authentication
-      uses API key bearer tokens available on Business plan. Base URL is https://platform.riverside.fm with v2 and v3
-      versioned paths.
-    humanURL: https://docs.riverside.fm/
-    baseURL: https://platform.riverside.fm
-    tags:
-      - Podcast
-      - Recording
-      - Media
-      - Video
-      - Audio
-      - Transcription
-    properties:
-      - url: https://docs.riverside.fm/endpoints-reference/v3/
-        type: Documentation
-      - url: https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API
-        type: GettingStarted
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/openapi/riverside-business-openapi.yml
-        type: OpenAPI
-      - url: https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/rules/riverside-business-rules.yml
-        type: SpectralRules
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-schema/riverside-recording-schema.json
-        type: JSONSchema
-    contact:
-      - FN: Riverside Support
-        url: https://support.riverside.fm
-    features:
-      - Recording Management
-      - Production Organization
-      - Studio and Project Hierarchy
-      - File Downloads
-      - Transcription Access
-      - Export Management
-      - Webinar Registration
-      - AI Editing Tools
-    useCases:
-      - Enterprise podcast production
-      - Remote video recording management
-      - Automated transcription retrieval
-      - Webinar content archiving
-      - Media asset management
-    solutions:
-      - Podcast Production
-      - Video Recording
-      - Content Creation Platform
+- aid: riverside:riverside-exports-api
+  name: Riverside Exports API
+  description: Export file management and downloads
+  humanURL: https://docs.riverside.fm/
+  baseURL: https://platform.riverside.fm
+  tags:
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/riverside-exports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.riverside.fm/endpoints-reference/v3/
+  - type: GettingStarted
+    url: https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/rules/riverside-business-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-schema/riverside-recording-schema.json
+- aid: riverside:riverside-productions-api
+  name: Riverside Productions API
+  description: Production workspace organization
+  humanURL: https://docs.riverside.fm/
+  baseURL: https://platform.riverside.fm
+  tags:
+  - Productions
+  properties:
+  - type: OpenAPI
+    url: openapi/riverside-productions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.riverside.fm/endpoints-reference/v3/
+  - type: GettingStarted
+    url: https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/rules/riverside-business-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-schema/riverside-recording-schema.json
+- aid: riverside:riverside-recordings-api
+  name: Riverside Recordings API
+  description: Recording management and retrieval
+  humanURL: https://docs.riverside.fm/
+  baseURL: https://platform.riverside.fm
+  tags:
+  - Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/riverside-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.riverside.fm/endpoints-reference/v3/
+  - type: GettingStarted
+    url: https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/rules/riverside-business-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-schema/riverside-recording-schema.json
+- aid: riverside:riverside-webinars-api
+  name: Riverside Webinars API
+  description: Webinar registration management
+  humanURL: https://docs.riverside.fm/
+  baseURL: https://platform.riverside.fm
+  tags:
+  - Webinars
+  properties:
+  - type: OpenAPI
+    url: openapi/riverside-webinars-api-openapi.yml
+  - type: Documentation
+    url: https://docs.riverside.fm/endpoints-reference/v3/
+  - type: GettingStarted
+    url: https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/rules/riverside-business-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-schema/riverside-recording-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/riverside/overview
   - type: AgenticAccess
     url: agentic-access/riverside-agentic-access.yml
   - type: DomainSecurity
