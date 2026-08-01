@@ -1,0 +1,20 @@
+{
+  "provider": "riverside",
+  "sources": [
+    "riverside-exports-api-openapi.yml",
+    "riverside-productions-api-openapi.yml",
+    "riverside-recordings-api-openapi.yml",
+    "riverside-webinars-api-openapi.yml"
+  ],
+  "outputs": [
+    "riverside-exports-api-openapi.yml",
+    "riverside-productions-api-openapi.yml",
+    "riverside-recordings-api-openapi.yml",
+    "riverside-webinars-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -5,7 +5,7 @@
       "source": "https://riverside.com/blog/rss.xml",
       "feed_url": "https://riverside.com/blog/rss.xml",
       "title": "",
-      "saved": 7,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 208,
-  "fetched": "2026-07-11T11:50:51Z"
+  "post_count": 261,
+  "fetched": "2026-08-01T15:49:00Z"
 }

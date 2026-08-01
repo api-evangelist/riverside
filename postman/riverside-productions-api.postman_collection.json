@@ -1,0 +1,222 @@
+{
+  "info": {
+    "_postman_id": "c47ba666-3764-4eb9-922a-f842f0d71213",
+    "name": "Riverside Business Exports Productions API",
+    "description": "The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.\n\nContact Support:\n Name: Riverside Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:11.000Z",
+    "updatedAt": "2026-07-28T02:48:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c47ba666-3764-4eb9-922a-f842f0d71213"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "productions",
+              "item": [
+                {
+                  "name": "List Workspace Productions",
+                  "id": "5e73ffd8-7989-4ca4-aeda-d19bb3d1928d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/productions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "productions"
+                      ]
+                    },
+                    "description": "Retrieves all productions in your workspace, including their associated studios and projects. Rate limited to one request per second."
+                  },
+                  "response": [
+                    {
+                      "id": "e1089d19-9544-4ff7-a782-74c884551ca7",
+                      "name": "List of productions with studios and projects",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/productions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "productions"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"created_date\": \"<dateTime>\",\n    \"num_recordings\": \"<integer>\",\n    \"studios\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"created_date\": \"<dateTime>\",\n        \"num_recordings\": \"<integer>\",\n        \"projects\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          }\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"created_date\": \"<dateTime>\",\n        \"num_recordings\": \"<integer>\",\n        \"projects\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"created_date\": \"<dateTime>\",\n    \"num_recordings\": \"<integer>\",\n    \"studios\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"created_date\": \"<dateTime>\",\n        \"num_recordings\": \"<integer>\",\n        \"projects\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          }\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"created_date\": \"<dateTime>\",\n        \"num_recordings\": \"<integer>\",\n        \"projects\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"created_date\": \"<dateTime>\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-07-28T02:48:12.000Z",
+                      "updatedAt": "2026-07-28T02:48:12.000Z",
+                      "uid": "35240-e1089d19-9544-4ff7-a782-74c884551ca7"
+                    },
+                    {
+                      "id": "f793da1d-a0c9-48a4-b132-a416946d44e3",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/productions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "productions"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:48:12.000Z",
+                      "updatedAt": "2026-07-28T02:48:12.000Z",
+                      "uid": "35240-f793da1d-a0c9-48a4-b132-a416946d44e3"
+                    },
+                    {
+                      "id": "e57013d0-1c8b-4cf7-ace5-149a2617af1e",
+                      "name": "Rate limit exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/productions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "productions"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:48:12.000Z",
+                      "updatedAt": "2026-07-28T02:48:12.000Z",
+                      "uid": "35240-e57013d0-1c8b-4cf7-ace5-149a2617af1e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:12.000Z",
+                  "updatedAt": "2026-07-28T02:48:12.000Z",
+                  "uid": "35240-5e73ffd8-7989-4ca4-aeda-d19bb3d1928d"
+                }
+              ],
+              "id": "11272e61-db9b-4946-a9fb-a11450916977",
+              "createdAt": "2026-07-28T02:48:12.000Z",
+              "updatedAt": "2026-07-28T02:48:12.000Z",
+              "uid": "35240-11272e61-db9b-4946-a9fb-a11450916977"
+            }
+          ],
+          "id": "7f85a3f5-f684-41aa-aaab-ec39228a0524",
+          "createdAt": "2026-07-28T02:48:12.000Z",
+          "updatedAt": "2026-07-28T02:48:12.000Z",
+          "uid": "35240-7f85a3f5-f684-41aa-aaab-ec39228a0524"
+        }
+      ],
+      "id": "8d27fb40-6367-41fa-9460-77e35186e418",
+      "createdAt": "2026-07-28T02:48:12.000Z",
+      "updatedAt": "2026-07-28T02:48:12.000Z",
+      "uid": "35240-8d27fb40-6367-41fa-9460-77e35186e418"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://platform.riverside.fm"
+    }
+  ]
+}

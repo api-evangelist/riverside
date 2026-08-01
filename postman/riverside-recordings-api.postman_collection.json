@@ -1,0 +1,1193 @@
+{
+  "info": {
+    "_postman_id": "0a89815c-23c8-442c-aebd-a0066de572ec",
+    "name": "Riverside Business Exports Recordings API",
+    "description": "The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.\n\nContact Support:\n Name: Riverside Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:16.000Z",
+    "updatedAt": "2026-07-28T02:48:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0a89815c-23c8-442c-aebd-a0066de572ec"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "recordings",
+              "item": [
+                {
+                  "name": "List All Recordings",
+                  "id": "c4450570-854b-40da-85fc-2f03ccfe412f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/recordings?studioId=<string>&projectId=<string>&start_date=<date>&end_date=<date>&page=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "recordings"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter recordings by studio ID",
+                          "key": "studioId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter recordings by project ID",
+                          "key": "projectId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter recordings created on or after this date (YYYY-MM-DD)",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter recordings created on or before this date (YYYY-MM-DD)",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Page number for pagination (defaults to 0)",
+                          "key": "page",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all recordings in your workspace with pagination support. Can be filtered by studio, project, or date range. Returns newest recordings first with a default cap of 20 per page. Rate limited to once every 10 seconds per unique request."
+                  },
+                  "response": [
+                    {
+                      "id": "d93f46e3-f0e0-4a9c-8547-20c63201915b",
+                      "name": "Paginated list of recordings",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/recordings?studioId=<string>&projectId=<string>&start_date=<date>&end_date=<date>&page=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "recordings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter recordings by studio ID",
+                              "key": "studioId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter recordings by project ID",
+                              "key": "projectId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter recordings created on or after this date (YYYY-MM-DD)",
+                              "key": "start_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter recordings created on or before this date (YYYY-MM-DD)",
+                              "key": "end_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Page number for pagination (defaults to 0)",
+                              "key": "page",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"page\": \"<integer>\",\n  \"next_page_url\": \"<uri>\",\n  \"total_items\": \"<integer>\",\n  \"total_pages\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"project_name\": \"<string>\",\n      \"studio_id\": \"<string>\",\n      \"studio_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"tracks\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"files\": [\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"files\": [\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            }\n          ]\n        }\n      ],\n      \"transcription\": {\n        \"status\": \"<string>\",\n        \"srt_url\": \"<uri>\",\n        \"txt_url\": \"<uri>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"project_name\": \"<string>\",\n      \"studio_id\": \"<string>\",\n      \"studio_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"tracks\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"files\": [\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"files\": [\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"size\": \"<integer>\",\n              \"download_url\": \"<uri>\"\n            }\n          ]\n        }\n      ],\n      \"transcription\": {\n        \"status\": \"<string>\",\n        \"srt_url\": \"<uri>\",\n        \"txt_url\": \"<uri>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:48:17.000Z",
+                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                      "uid": "35240-d93f46e3-f0e0-4a9c-8547-20c63201915b"
+                    },
+                    {
+                      "id": "7c27f865-a20b-47a2-9723-b91ad577262f",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/recordings?studioId=<string>&projectId=<string>&start_date=<date>&end_date=<date>&page=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "recordings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter recordings by studio ID",
+                              "key": "studioId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter recordings by project ID",
+                              "key": "projectId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter recordings created on or after this date (YYYY-MM-DD)",
+                              "key": "start_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter recordings created on or before this date (YYYY-MM-DD)",
+                              "key": "end_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Page number for pagination (defaults to 0)",
+                              "key": "page",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:48:17.000Z",
+                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                      "uid": "35240-7c27f865-a20b-47a2-9723-b91ad577262f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:17.000Z",
+                  "updatedAt": "2026-07-28T02:48:17.000Z",
+                  "uid": "35240-c4450570-854b-40da-85fc-2f03ccfe412f"
+                }
+              ],
+              "id": "f633296a-f4ec-47c4-9ea9-c74f087ff1ef",
+              "createdAt": "2026-07-28T02:48:17.000Z",
+              "updatedAt": "2026-07-28T02:48:17.000Z",
+              "uid": "35240-f633296a-f4ec-47c4-9ea9-c74f087ff1ef"
+            }
+          ],
+          "id": "8db2fa50-82c8-46b0-94c0-5e4f5b9d5dce",
+          "createdAt": "2026-07-28T02:48:17.000Z",
+          "updatedAt": "2026-07-28T02:48:17.000Z",
+          "uid": "35240-8db2fa50-82c8-46b0-94c0-5e4f5b9d5dce"
+        },
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "recordings",
+              "item": [
+                {
+                  "name": "{recording_id}",
+                  "item": [
+                    {
+                      "name": "files",
+                      "item": [
+                        {
+                          "name": "{file_id}",
+                          "item": [
+                            {
+                              "name": "download",
+                              "item": [
+                                {
+                                  "name": "Download File",
+                                  "id": "f9efe978-652f-4245-b08f-f784ff04c6f3",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/octet-stream"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/files/:file_id/download",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "recordings",
+                                        ":recording_id",
+                                        "files",
+                                        ":file_id",
+                                        "download"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "dfa48e76-848c-469a-beb1-1783bf4a498e",
+                                          "key": "recording_id",
+                                          "value": "<string>",
+                                          "description": "(Required) The recording ID"
+                                        },
+                                        {
+                                          "id": "f2842774-4b89-4382-b9a8-1387cfae69e7",
+                                          "key": "file_id",
+                                          "value": "<string>",
+                                          "description": "(Required) The file ID to download"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Download a specific file associated with a recording track."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d765a7e7-d124-446d-9b42-05a33a10e264",
+                                      "name": "File download stream",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/octet-stream"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/files/:file_id/download",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "recordings",
+                                            ":recording_id",
+                                            "files",
+                                            ":file_id",
+                                            "download"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "recording_id"
+                                            },
+                                            {
+                                              "key": "file_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/octet-stream"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<binary>",
+                                      "createdAt": "2026-07-28T02:48:17.000Z",
+                                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                                      "uid": "35240-d765a7e7-d124-446d-9b42-05a33a10e264"
+                                    },
+                                    {
+                                      "id": "fe93829d-31b3-4656-befd-717a0c23e120",
+                                      "name": "Authentication failed",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/files/:file_id/download",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "recordings",
+                                            ":recording_id",
+                                            "files",
+                                            ":file_id",
+                                            "download"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "recording_id"
+                                            },
+                                            {
+                                              "key": "file_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:48:17.000Z",
+                                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                                      "uid": "35240-fe93829d-31b3-4656-befd-717a0c23e120"
+                                    },
+                                    {
+                                      "id": "9ec0de70-c083-4bb0-a9ef-137e02b45472",
+                                      "name": "Resource not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/files/:file_id/download",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "recordings",
+                                            ":recording_id",
+                                            "files",
+                                            ":file_id",
+                                            "download"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "recording_id"
+                                            },
+                                            {
+                                              "key": "file_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:48:17.000Z",
+                                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                                      "uid": "35240-9ec0de70-c083-4bb0-a9ef-137e02b45472"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:48:17.000Z",
+                                  "updatedAt": "2026-07-28T02:48:17.000Z",
+                                  "uid": "35240-f9efe978-652f-4245-b08f-f784ff04c6f3"
+                                }
+                              ],
+                              "id": "30d0f204-2d7d-40f4-a120-433d71ba49ad",
+                              "createdAt": "2026-07-28T02:48:17.000Z",
+                              "updatedAt": "2026-07-28T02:48:17.000Z",
+                              "uid": "35240-30d0f204-2d7d-40f4-a120-433d71ba49ad"
+                            }
+                          ],
+                          "id": "da6c5db2-3e00-44f8-99a0-4bff87580832",
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-da6c5db2-3e00-44f8-99a0-4bff87580832"
+                        }
+                      ],
+                      "id": "d7e90aa7-c53e-4c36-b388-4e6070e84c81",
+                      "createdAt": "2026-07-28T02:48:17.000Z",
+                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                      "uid": "35240-d7e90aa7-c53e-4c36-b388-4e6070e84c81"
+                    },
+                    {
+                      "name": "transcription",
+                      "item": [
+                        {
+                          "name": "download",
+                          "item": [
+                            {
+                              "name": "Download Transcription File",
+                              "id": "1c0f2857-ba56-4b88-9fa5-900e5a78e047",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/transcription/download?format=srt",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "recordings",
+                                    ":recording_id",
+                                    "transcription",
+                                    "download"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Transcription file format",
+                                      "key": "format",
+                                      "value": "srt"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ee1f3876-3a4f-4687-8ba8-2de4fa6aa9b1",
+                                      "key": "recording_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The recording ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Download the transcription file for a recording in SRT or TXT format."
+                              },
+                              "response": [
+                                {
+                                  "id": "3e5c435a-a3e4-4ee3-bbbb-07d062fd52f8",
+                                  "name": "Transcription file content",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/transcription/download?format=srt",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "recordings",
+                                        ":recording_id",
+                                        "transcription",
+                                        "download"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Transcription file format",
+                                          "key": "format",
+                                          "value": "srt"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "recording_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "text/plain"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "<string>",
+                                  "createdAt": "2026-07-28T02:48:17.000Z",
+                                  "updatedAt": "2026-07-28T02:48:17.000Z",
+                                  "uid": "35240-3e5c435a-a3e4-4ee3-bbbb-07d062fd52f8"
+                                },
+                                {
+                                  "id": "1320313f-3906-4522-b070-70af5bfb0b1c",
+                                  "name": "Authentication failed",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/transcription/download?format=srt",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "recordings",
+                                        ":recording_id",
+                                        "transcription",
+                                        "download"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Transcription file format",
+                                          "key": "format",
+                                          "value": "srt"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "recording_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:48:17.000Z",
+                                  "updatedAt": "2026-07-28T02:48:17.000Z",
+                                  "uid": "35240-1320313f-3906-4522-b070-70af5bfb0b1c"
+                                },
+                                {
+                                  "id": "4d97dd59-247a-4107-9261-f52e9bf508ec",
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/recordings/:recording_id/transcription/download?format=srt",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "recordings",
+                                        ":recording_id",
+                                        "transcription",
+                                        "download"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Transcription file format",
+                                          "key": "format",
+                                          "value": "srt"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "recording_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:48:17.000Z",
+                                  "updatedAt": "2026-07-28T02:48:17.000Z",
+                                  "uid": "35240-4d97dd59-247a-4107-9261-f52e9bf508ec"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:48:17.000Z",
+                              "updatedAt": "2026-07-28T02:48:17.000Z",
+                              "uid": "35240-1c0f2857-ba56-4b88-9fa5-900e5a78e047"
+                            }
+                          ],
+                          "id": "eeb9513a-f39f-40f0-a584-065350c75791",
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-eeb9513a-f39f-40f0-a584-065350c75791"
+                        }
+                      ],
+                      "id": "e49639ef-1ce4-4506-9cbb-211cea9b678f",
+                      "createdAt": "2026-07-28T02:48:17.000Z",
+                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                      "uid": "35240-e49639ef-1ce4-4506-9cbb-211cea9b678f"
+                    },
+                    {
+                      "name": "Get Recording",
+                      "id": "e238cb2f-480d-4a92-84d1-26796d65fcbe",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "recordings",
+                            ":recording_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7ac7b10e-99e2-4ad8-84d5-6fbb76eabeb2",
+                              "key": "recording_id",
+                              "value": "<string>",
+                              "description": "(Required) The recording ID (obtainable via \"Copy Recording ID\" in the recording menu)"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a single recording with associated tracks and metadata. Rate limited to one request per 10 seconds per unique recording ID."
+                      },
+                      "response": [
+                        {
+                          "id": "d0bcce20-d20b-48d0-be15-122c61471415",
+                          "name": "Recording details with tracks",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "recordings",
+                                ":recording_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recording_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"project_name\": \"<string>\",\n  \"studio_id\": \"<string>\",\n  \"studio_name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_date\": \"<dateTime>\",\n  \"tracks\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"files\": [\n        {\n          \"type\": \"<string>\",\n          \"size\": \"<integer>\",\n          \"download_url\": \"<uri>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"size\": \"<integer>\",\n          \"download_url\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"files\": [\n        {\n          \"type\": \"<string>\",\n          \"size\": \"<integer>\",\n          \"download_url\": \"<uri>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"size\": \"<integer>\",\n          \"download_url\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"transcription\": {\n    \"status\": \"<string>\",\n    \"srt_url\": \"<uri>\",\n    \"txt_url\": \"<uri>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-d0bcce20-d20b-48d0-be15-122c61471415"
+                        },
+                        {
+                          "id": "c226f2c9-954f-4586-8feb-045546312e92",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "recordings",
+                                ":recording_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recording_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-c226f2c9-954f-4586-8feb-045546312e92"
+                        },
+                        {
+                          "id": "f05b1ad9-7f37-476f-8897-989f5373799e",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "recordings",
+                                ":recording_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recording_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-f05b1ad9-7f37-476f-8897-989f5373799e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:17.000Z",
+                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                      "uid": "35240-e238cb2f-480d-4a92-84d1-26796d65fcbe"
+                    },
+                    {
+                      "name": "Delete Recording",
+                      "id": "33302fe4-4476-42d5-bc43-77124a146ab6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "recordings",
+                            ":recording_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dd675313-a106-45d6-a54c-64a0766643ab",
+                              "key": "recording_id",
+                              "value": "<string>",
+                              "description": "(Required) The recording ID to delete"
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes a recording and all its associated files."
+                      },
+                      "response": [
+                        {
+                          "id": "94b8a02e-893c-45e0-a8b0-252be4f1fc3c",
+                          "name": "Recording deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "recordings",
+                                ":recording_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recording_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-94b8a02e-893c-45e0-a8b0-252be4f1fc3c"
+                        },
+                        {
+                          "id": "5e38fd89-7e9f-4cba-8cbf-4cc309253908",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "recordings",
+                                ":recording_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recording_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-5e38fd89-7e9f-4cba-8cbf-4cc309253908"
+                        },
+                        {
+                          "id": "a5f4a7ed-9bfc-434d-937c-c27b15b52e26",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/recordings/:recording_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "recordings",
+                                ":recording_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recording_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:48:17.000Z",
+                          "updatedAt": "2026-07-28T02:48:17.000Z",
+                          "uid": "35240-a5f4a7ed-9bfc-434d-937c-c27b15b52e26"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:17.000Z",
+                      "updatedAt": "2026-07-28T02:48:17.000Z",
+                      "uid": "35240-33302fe4-4476-42d5-bc43-77124a146ab6"
+                    }
+                  ],
+                  "id": "9aa66b2d-79e3-4fc8-bcfc-237caa76af42",
+                  "createdAt": "2026-07-28T02:48:17.000Z",
+                  "updatedAt": "2026-07-28T02:48:17.000Z",
+                  "uid": "35240-9aa66b2d-79e3-4fc8-bcfc-237caa76af42"
+                }
+              ],
+              "id": "b894c9af-31f6-4c1e-9bb7-bb698bb7dbf2",
+              "createdAt": "2026-07-28T02:48:17.000Z",
+              "updatedAt": "2026-07-28T02:48:17.000Z",
+              "uid": "35240-b894c9af-31f6-4c1e-9bb7-bb698bb7dbf2"
+            }
+          ],
+          "id": "759f1567-3411-4ee1-96cf-e89e3b9d6149",
+          "createdAt": "2026-07-28T02:48:17.000Z",
+          "updatedAt": "2026-07-28T02:48:17.000Z",
+          "uid": "35240-759f1567-3411-4ee1-96cf-e89e3b9d6149"
+        }
+      ],
+      "id": "5938b5be-fd2f-4da5-b24b-6f698bf1d402",
+      "createdAt": "2026-07-28T02:48:17.000Z",
+      "updatedAt": "2026-07-28T02:48:17.000Z",
+      "uid": "35240-5938b5be-fd2f-4da5-b24b-6f698bf1d402"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://platform.riverside.fm"
+    }
+  ]
+}

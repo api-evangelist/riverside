@@ -1,0 +1,473 @@
+{
+  "info": {
+    "_postman_id": "5d24afa6-5366-45ab-86f2-2bd17c3783c8",
+    "name": "Riverside Business Exports Webinars API",
+    "description": "The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.\n\nContact Support:\n Name: Riverside Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:30.000Z",
+    "updatedAt": "2026-07-28T02:48:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5d24afa6-5366-45ab-86f2-2bd17c3783c8"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "webinars",
+              "item": [
+                {
+                  "name": "{webinar_id}",
+                  "item": [
+                    {
+                      "name": "registrants",
+                      "item": [
+                        {
+                          "name": "Create Webinar Registrant",
+                          "id": "78afc30f-81f1-4454-ba8a-39a5bd50bbe8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"custom_fields\": {\n    \"adipisicinged\": 51817676.466362566,\n    \"reprehenderitecb\": 54567022\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/webinars/:webinar_id/registrants",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "webinars",
+                                ":webinar_id",
+                                "registrants"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4495c2af-6670-403c-a395-d6df8b47c345",
+                                  "key": "webinar_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The webinar ID"
+                                }
+                              ]
+                            },
+                            "description": "Register a participant for a webinar session."
+                          },
+                          "response": [
+                            {
+                              "id": "cd1af37d-3d73-4ad9-9be5-9bda3108451f",
+                              "name": "Registrant created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"custom_fields\": {\n    \"adipisicinged\": 51817676.466362566,\n    \"reprehenderitecb\": 54567022\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/webinars/:webinar_id/registrants",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "webinars",
+                                    ":webinar_id",
+                                    "registrants"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webinar_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"registered_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:48:31.000Z",
+                              "updatedAt": "2026-07-28T02:48:31.000Z",
+                              "uid": "35240-cd1af37d-3d73-4ad9-9be5-9bda3108451f"
+                            },
+                            {
+                              "id": "65219c75-e47e-4052-b8a0-79d48d03811d",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"custom_fields\": {\n    \"adipisicinged\": 51817676.466362566,\n    \"reprehenderitecb\": 54567022\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/webinars/:webinar_id/registrants",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "webinars",
+                                    ":webinar_id",
+                                    "registrants"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webinar_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:48:31.000Z",
+                              "updatedAt": "2026-07-28T02:48:31.000Z",
+                              "uid": "35240-65219c75-e47e-4052-b8a0-79d48d03811d"
+                            },
+                            {
+                              "id": "28ce60f0-c09c-4dea-ba2a-07ca6142159b",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"custom_fields\": {\n    \"adipisicinged\": 51817676.466362566,\n    \"reprehenderitecb\": 54567022\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/webinars/:webinar_id/registrants",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "webinars",
+                                    ":webinar_id",
+                                    "registrants"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webinar_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:48:31.000Z",
+                              "updatedAt": "2026-07-28T02:48:31.000Z",
+                              "uid": "35240-28ce60f0-c09c-4dea-ba2a-07ca6142159b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:48:31.000Z",
+                          "updatedAt": "2026-07-28T02:48:31.000Z",
+                          "uid": "35240-78afc30f-81f1-4454-ba8a-39a5bd50bbe8"
+                        },
+                        {
+                          "name": "Get Registrants",
+                          "id": "736780bb-6f86-48fe-9acd-0cebca049341",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/webinars/:webinar_id/registrants",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "webinars",
+                                ":webinar_id",
+                                "registrants"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c3d67926-735e-4cb6-bff6-a66f4dc7fd05",
+                                  "key": "webinar_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The webinar ID"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves all registrants for a webinar."
+                          },
+                          "response": [
+                            {
+                              "id": "56db98a1-65df-4663-bc10-8d1b1af7c33b",
+                              "name": "List of webinar registrants",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/webinars/:webinar_id/registrants",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "webinars",
+                                    ":webinar_id",
+                                    "registrants"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webinar_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"name\": \"<string>\",\n    \"registered_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"name\": \"<string>\",\n    \"registered_at\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-07-28T02:48:31.000Z",
+                              "updatedAt": "2026-07-28T02:48:31.000Z",
+                              "uid": "35240-56db98a1-65df-4663-bc10-8d1b1af7c33b"
+                            },
+                            {
+                              "id": "9d32a2eb-f2ee-4d96-9ece-67133ceaa5ca",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/webinars/:webinar_id/registrants",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "webinars",
+                                    ":webinar_id",
+                                    "registrants"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webinar_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:48:31.000Z",
+                              "updatedAt": "2026-07-28T02:48:31.000Z",
+                              "uid": "35240-9d32a2eb-f2ee-4d96-9ece-67133ceaa5ca"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:48:31.000Z",
+                          "updatedAt": "2026-07-28T02:48:31.000Z",
+                          "uid": "35240-736780bb-6f86-48fe-9acd-0cebca049341"
+                        }
+                      ],
+                      "id": "6afd7810-213c-4ada-81ff-92ae81466e5c",
+                      "createdAt": "2026-07-28T02:48:31.000Z",
+                      "updatedAt": "2026-07-28T02:48:31.000Z",
+                      "uid": "35240-6afd7810-213c-4ada-81ff-92ae81466e5c"
+                    }
+                  ],
+                  "id": "fa03fee6-d186-4eb2-b2ca-5c1b6dbefaa6",
+                  "createdAt": "2026-07-28T02:48:31.000Z",
+                  "updatedAt": "2026-07-28T02:48:31.000Z",
+                  "uid": "35240-fa03fee6-d186-4eb2-b2ca-5c1b6dbefaa6"
+                }
+              ],
+              "id": "62cea711-61d4-498b-a6f9-0d541ac7c0f7",
+              "createdAt": "2026-07-28T02:48:31.000Z",
+              "updatedAt": "2026-07-28T02:48:31.000Z",
+              "uid": "35240-62cea711-61d4-498b-a6f9-0d541ac7c0f7"
+            }
+          ],
+          "id": "fbee4a4f-4a7c-402d-9338-fbcfac32129b",
+          "createdAt": "2026-07-28T02:48:31.000Z",
+          "updatedAt": "2026-07-28T02:48:31.000Z",
+          "uid": "35240-fbee4a4f-4a7c-402d-9338-fbcfac32129b"
+        }
+      ],
+      "id": "bfaceb58-78ef-443a-985d-674b641dacc0",
+      "createdAt": "2026-07-28T02:48:31.000Z",
+      "updatedAt": "2026-07-28T02:48:31.000Z",
+      "uid": "35240-bfaceb58-78ef-443a-985d-674b641dacc0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://platform.riverside.fm"
+    }
+  ]
+}
