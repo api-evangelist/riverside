@@ -1,0 +1,33 @@
+# Riverside Business API Documentation
+
+## Docs
+
+- [Introduction](https://docs.riverside.fm/quickstart.md): Getting started with the Riverside Business API.
+- [List Workspace](https://docs.riverside.fm/endpoints-reference/v3/list-workspace.md): Retrieves a list of all productions in your workspace, including their studios and projects.
+- [List All Recordings](https://docs.riverside.fm/endpoints-reference/v3/list-all-recordings.md): Retrieves a paginated list of recordings with optional filtering by studio, project, or date range.
+- [Get Recording](https://docs.riverside.fm/endpoints-reference/v3/get-recording.md): Retrieves detailed information about a specific recording, including all tracks and files.
+- [Delete Recording](https://docs.riverside.fm/endpoints-reference/v3/delete-recording.md): Soft deletes a recording and all associated tracks and files.
+- [List All Exports](https://docs.riverside.fm/endpoints-reference/v3/list-all-exports.md): Retrieves a paginated list of exports with optional filtering by studio, project, or date range.
+- [Get Export](https://docs.riverside.fm/endpoints-reference/v3/get-export.md): Retrieves detailed information about a specific export.
+- [Delete Export](https://docs.riverside.fm/endpoints-reference/v3/delete-export.md): Permanently deletes an export.
+- [Download File](https://docs.riverside.fm/endpoints-reference/v3/download-file.md): Downloads a specific track file from a recording.
+- [Download Transcription File](https://docs.riverside.fm/endpoints-reference/v3/download-transcription-file.md): Downloads the transcription file for a recording in the specified format.
+- [Download Export File](https://docs.riverside.fm/endpoints-reference/v3/download-export-file.md): Downloads an exported video or audio file.
+- [Create Webinar Registrant](https://docs.riverside.fm/endpoints-reference/v3/create-registrant.md): Registers a participant for a Riverside live or on-demand webinar.
+- [Get Registrants](https://docs.riverside.fm/endpoints-reference/v3/get-registrants.md): Retrieves a paginated list of registrants for a specific live or on-demand webinar, with optional filtering and sorting.
+- [List Edits](https://docs.riverside.fm/endpoints-reference/v3/list-edits.md): Retrieves a paginated list of edits (clips) for the account, with optional filtering by studio, project, and date range.
+- [Create Timeline Export](https://docs.riverside.fm/endpoints-reference/v3/create-timeline-export.md): Queues an editing timeline (XML or AAF) export for an edit, so it can be opened in Adobe Premiere Pro, Final Cut Pro, or Pro Tools.
+- [Get Timeline Export](https://docs.riverside.fm/endpoints-reference/v3/get-timeline.md): Retrieves the status of a timeline export job, including the signed download URL once the export is complete.
+- [Download Timeline File](https://docs.riverside.fm/endpoints-reference/v3/download-timeline-file.md): Downloads a generated editing-timeline (XML or AAF) export as a ZIP.
+- [Webhooks Overview](https://docs.riverside.fm/webhooks/overview.md): Receive real-time HTTP callbacks when events happen in your Riverside account.
+- [Event Types](https://docs.riverside.fm/webhooks/event-types.md): The catalog of webhook events you can subscribe to, and the payload each one delivers.
+- [Verifying Signatures](https://docs.riverside.fm/webhooks/verifying-signatures.md): Authenticate incoming webhook deliveries using the HMAC signature and timestamp headers.
+- [Delivery & Retries](https://docs.riverside.fm/webhooks/delivery-and-retries.md): How Riverside delivers webhooks, retries failures, auto-disables broken endpoints, and lets you replay.
+- [Production Object](https://docs.riverside.fm/object-reference/production.md): Productions are the top-most unit of organization in a Riverside account, containing studios. Productions often correspond to a team or initiative.
+- [Studio Object](https://docs.riverside.fm/object-reference/studio.md): Studios are found under productions, and often reflect a series of content.
+- [Project Object](https://docs.riverside.fm/object-reference/project.md): A Project is a folder of related recordings and edits, meant to group the assets of a piece of content (i.e. an episode).
+- [Recording Object](https://docs.riverside.fm/object-reference/recording.md): Recordings can be recorded in the Riverside studio or uploaded to Riverside. They group together the separate tracks, transcription, and related files. Recordings often reflect a "take."
+- [Track Object](https://docs.riverside.fm/object-reference/track.md): A Track reflects the local recording of one individual participant, or media generated in the studio such as screenshares or sounds and videos played live using the media board.
+- [File Object](https://docs.riverside.fm/object-reference/file.md): A File reflects a specific downloadable piece of media in your account.
+- [Export object](https://docs.riverside.fm/object-reference/export.md): Exports are created in the Riverside Editor after recording sessions. They represent finalized edited outputs, downloadable as audio or video files.
+- [Edit object](https://docs.riverside.fm/object-reference/edit.md): An edit (clip) created in the Riverside Editor. Edits can be exported to media files and to editing-timeline files (XML / AAF) for Premiere Pro, Final Cut Pro, or Pro Tools.

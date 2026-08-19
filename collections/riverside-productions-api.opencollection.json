@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Riverside Business Exports Productions API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Productions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspace Productions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v3/productions",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all productions in your workspace, including their associated studios and projects. Rate limited to one request per second."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Riverside Business Exports Webinars API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webinars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Registrants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.riverside.fm/api/v1/webinars/:webinar_id/registrants",
+            "params": [
+              {
+                "name": "webinar_id",
+                "value": "",
+                "type": "path",
+                "description": "The webinar ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all registrants for a webinar."
+        },
+        {
+          "info": {
+            "name": "Create Webinar Registrant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.riverside.fm/api/v1/webinars/:webinar_id/registrants",
+            "params": [
+              {
+                "name": "webinar_id",
+                "value": "",
+                "type": "path",
+                "description": "The webinar ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Register a participant for a webinar session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

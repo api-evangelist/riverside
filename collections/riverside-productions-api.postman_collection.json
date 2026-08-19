@@ -1,0 +1,212 @@
+{
+  "item": [
+    {
+      "id": "6a4e2a72-fdef-408e-acdf-ee52b1ede433",
+      "name": "Productions",
+      "description": {
+        "content": "Production workspace organization",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c283471-b3e6-4456-a37d-0194806cd9e5",
+          "name": "List Workspace Productions",
+          "request": {
+            "name": "List Workspace Productions",
+            "description": {
+              "content": "Retrieves all productions in your workspace, including their associated studios and projects. Rate limited to one request per second.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "productions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5d7d99bc-dd8a-4417-81dd-9018667b5048",
+              "name": "List of productions with studios and projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "productions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"created_date\": \"1999-04-11T05:40:54.896Z\",\n    \"num_recordings\": 8821,\n    \"studios\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"created_date\": \"2020-02-16T05:45:58.685Z\",\n        \"num_recordings\": 1764,\n        \"projects\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"1948-04-22T19:27:24.443Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"1964-07-27T15:47:59.765Z\"\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"created_date\": \"2024-05-31T01:11:36.374Z\",\n        \"num_recordings\": 2931,\n        \"projects\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"1985-08-30T22:42:10.159Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"1984-06-22T22:19:28.899Z\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"created_date\": \"2014-05-02T18:52:55.605Z\",\n    \"num_recordings\": 4812,\n    \"studios\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"created_date\": \"1988-02-19T13:57:12.246Z\",\n        \"num_recordings\": 9587,\n        \"projects\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"2023-06-06T05:37:30.747Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"1948-04-27T13:45:54.152Z\"\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"created_date\": \"2025-04-04T04:13:12.643Z\",\n        \"num_recordings\": 86,\n        \"projects\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"2022-10-10T23:07:38.285Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"created_date\": \"2023-01-04T23:27:53.542Z\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e210cf80-5c0d-41cd-a5e6-51d77a3f0df7",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "productions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb8bf683-8716-48f4-9c9a-47d0aa76d65c",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "productions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://platform.riverside.fm",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "49d7437d-834e-4e66-ba02-f189c1e26e30",
+    "name": "Riverside Business Exports Productions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.\n\nContact Support:\n Name: Riverside Support",
+      "type": "text/plain"
+    }
+  }
+}
