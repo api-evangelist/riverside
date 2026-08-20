@@ -37,6 +37,8 @@ apis:
   humanURL: https://docs.riverside.fm/
   baseURL: https://platform.riverside.fm
   tags:
+  - Export
+  tags_raw:
   - Exports
   properties:
   - type: OpenAPI
