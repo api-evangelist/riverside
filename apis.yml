@@ -34,6 +34,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/riverside.png
 tags:
+  - Podcasts
+  - Video Recording
+  - Media
+  - Content Creation
+  - Audio
+tags_raw:
   - Podcast
   - Video Recording
   - Media
@@ -92,6 +98,8 @@ apis:
   humanURL: https://docs.riverside.fm/
   baseURL: https://platform.riverside.fm
   tags:
+  - Recording
+  tags_raw:
   - Recordings
   properties:
   - type: OpenAPI
