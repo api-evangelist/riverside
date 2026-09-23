@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Riverside Business Exports Recordings API
+  title: Riverside Business Recordings API
   description: The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.
   version: v3
   contact:
@@ -182,27 +182,35 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    TrackFile:
+    Track:
       type: object
+      description: An individual audio or video track within a recording
       properties:
+        id:
+          type: string
         type:
           type: string
-          description: File type (e.g., compressed_audio, raw_video)
-        size:
-          type: integer
-          description: File size in bytes
-        download_url:
+          description: Track type (e.g., compressed_audio, raw_video)
+        status:
           type: string
-          format: uri
-          description: Temporary URL for file download
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackFile'
     RecordingList:
       type: object
       properties:
@@ -223,21 +231,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Recording'
-    Track:
-      type: object
-      description: An individual audio or video track within a recording
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          description: Track type (e.g., compressed_audio, raw_video)
-        status:
-          type: string
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackFile'
     Recording:
       type: object
       description: A recording session with tracks and metadata
@@ -283,19 +276,26 @@ components:
           type: string
           format: uri
           description: URL to download TXT transcription file
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    TrackFile:
+      type: object
+      properties:
+        type:
+          type: string
+          description: File type (e.g., compressed_audio, raw_video)
+        size:
+          type: integer
+          description: File size in bytes
+        download_url:
+          type: string
+          format: uri
+          description: Temporary URL for file download
   securitySchemes:
     ApiKeyAuth:
       type: http

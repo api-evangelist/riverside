@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Riverside Business Exports Productions API
+  title: Riverside Business Productions API
   description: The Riverside Business API provides programmatic access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Available on the Business plan with custom pricing. Authentication uses API key bearer tokens.
   version: v3
   contact:
@@ -52,19 +52,25 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Project:
+    Studio:
       type: object
-      description: A project sub-resource within a studio
+      description: A studio sub-resource within a production
       properties:
         id:
           type: string
-          description: Unique project identifier
+          description: Unique studio identifier
         name:
           type: string
-          description: Project name
+          description: Studio name
         created_date:
           type: string
           format: date-time
+        num_recordings:
+          type: integer
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     Production:
       type: object
       description: A top-level production container within a workspace
@@ -93,25 +99,19 @@ components:
           type: string
         code:
           type: string
-    Studio:
+    Project:
       type: object
-      description: A studio sub-resource within a production
+      description: A project sub-resource within a studio
       properties:
         id:
           type: string
-          description: Unique studio identifier
+          description: Unique project identifier
         name:
           type: string
-          description: Studio name
+          description: Project name
         created_date:
           type: string
           format: date-time
-        num_recordings:
-          type: integer
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
   securitySchemes:
     ApiKeyAuth:
       type: http

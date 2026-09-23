@@ -1,10 +1,7 @@
 {
   "provider": "riverside",
   "sources": [
-    "riverside-exports-api-openapi.yml",
-    "riverside-productions-api-openapi.yml",
-    "riverside-recordings-api-openapi.yml",
-    "riverside-webinars-api-openapi.yml"
+    "_original/riverside-business-openapi.yml"
   ],
   "outputs": [
     "riverside-exports-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "riverside-business-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "riverside-exports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "riverside-productions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "riverside-recordings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "riverside-webinars-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
