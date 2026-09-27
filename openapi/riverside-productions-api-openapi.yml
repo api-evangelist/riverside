@@ -38,39 +38,27 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Studio:
+    Error:
       type: object
-      description: A studio sub-resource within a production
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    Project:
+      type: object
+      description: A project sub-resource within a studio
       properties:
         id:
           type: string
-          description: Unique studio identifier
+          description: Unique project identifier
         name:
           type: string
-          description: Studio name
+          description: Project name
         created_date:
           type: string
           format: date-time
-        num_recordings:
-          type: integer
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
     Production:
       type: object
       description: A top-level production container within a workspace
@@ -92,26 +80,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Studio'
-    Error:
+    Studio:
       type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
-    Project:
-      type: object
-      description: A project sub-resource within a studio
+      description: A studio sub-resource within a production
       properties:
         id:
           type: string
-          description: Unique project identifier
+          description: Unique studio identifier
         name:
           type: string
-          description: Project name
+          description: Studio name
         created_date:
           type: string
           format: date-time
+        num_recordings:
+          type: integer
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+  responses:
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: http

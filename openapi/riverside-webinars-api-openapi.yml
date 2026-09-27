@@ -75,13 +75,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -90,19 +83,6 @@ components:
           type: string
         code:
           type: string
-    WebinarRegistrantResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-          format: email
-        name:
-          type: string
-        registered_at:
-          type: string
-          format: date-time
     WebinarRegistrant:
       type: object
       required:
@@ -119,6 +99,26 @@ components:
         custom_fields:
           type: object
           additionalProperties: true
+    WebinarRegistrantResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        registered_at:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: http

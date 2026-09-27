@@ -182,35 +182,28 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Track:
+    Error:
       type: object
-      description: An individual audio or video track within a recording
       properties:
-        id:
+        message:
           type: string
-        type:
+        code:
           type: string
-          description: Track type (e.g., compressed_audio, raw_video)
+    Transcription:
+      type: object
+      properties:
         status:
           type: string
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackFile'
+          description: Transcription processing status
+        srt_url:
+          type: string
+          format: uri
+          description: URL to download SRT transcription file
+        txt_url:
+          type: string
+          format: uri
+          description: URL to download TXT transcription file
     RecordingList:
       type: object
       properties:
@@ -262,27 +255,21 @@ components:
             $ref: '#/components/schemas/Track'
         transcription:
           $ref: '#/components/schemas/Transcription'
-    Transcription:
+    Track:
       type: object
+      description: An individual audio or video track within a recording
       properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Track type (e.g., compressed_audio, raw_video)
         status:
           type: string
-          description: Transcription processing status
-        srt_url:
-          type: string
-          format: uri
-          description: URL to download SRT transcription file
-        txt_url:
-          type: string
-          format: uri
-          description: URL to download TXT transcription file
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackFile'
     TrackFile:
       type: object
       properties:
@@ -296,6 +283,19 @@ components:
           type: string
           format: uri
           description: Temporary URL for file download
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: http
