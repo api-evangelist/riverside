@@ -114,13 +114,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
     Export:
       type: object
       properties:
@@ -138,6 +131,13 @@ components:
         download_url:
           type: string
           format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
   responses:
     Unauthorized:
       description: Authentication failed

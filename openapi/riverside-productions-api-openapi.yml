@@ -39,25 +39,13 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
-    Studio:
+    Error:
       type: object
-      description: A studio sub-resource within a production
       properties:
-        id:
+        message:
           type: string
-          description: Unique studio identifier
-        name:
+        code:
           type: string
-          description: Studio name
-        created_date:
-          type: string
-          format: date-time
-        num_recordings:
-          type: integer
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
     Production:
       type: object
       description: A top-level production container within a workspace
@@ -79,13 +67,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Studio'
-    Error:
+    Studio:
       type: object
+      description: A studio sub-resource within a production
       properties:
-        message:
+        id:
           type: string
-        code:
+          description: Unique studio identifier
+        name:
           type: string
+          description: Studio name
+        created_date:
+          type: string
+          format: date-time
+        num_recordings:
+          type: integer
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     Project:
       type: object
       description: A project sub-resource within a studio
