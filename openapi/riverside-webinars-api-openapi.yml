@@ -76,6 +76,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     WebinarRegistrantResponse:
       type: object
       properties:
@@ -105,13 +112,6 @@ components:
         custom_fields:
           type: object
           additionalProperties: true
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
   responses:
     Unauthorized:
       description: Authentication failed
