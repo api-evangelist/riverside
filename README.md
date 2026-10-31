@@ -1,4 +1,4 @@
-# Riverside (riverside)
+# Riverside
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,71 +66,169 @@
 
 Riverside is a professional podcast and video recording platform that enables remote studio-quality recording, AI-powered editing, and publishing. The Riverside Business API provides programmatic access to recordings, productions, studios, projects, exports, transcriptions, and webinar management for enterprise podcast production workflows. API access is available on Business plan only.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/apis.yml)
+**Areas:** Podcasts · Video Recording · Media · Content Creation · Audio
 
-## Scope
+## Riverside on APIs.io
 
-- **Type:** Index
+Everything profiled for Riverside is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/riverside/](https://apis.io/providers/riverside/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Podcast
-- Video Recording
-- Media
-- Content Creation
-- Audio
+- [Riverside Exports API](https://apis.io/apis/riverside/riverside-exports-api/) — Export file management and downloads
+- [Riverside Productions API](https://apis.io/apis/riverside/riverside-productions-api/) — Production workspace organization
+- [Riverside Recordings API](https://apis.io/apis/riverside/riverside-recordings-api/) — Recording management and retrieval
+- [Riverside Webinars API](https://apis.io/apis/riverside/riverside-webinars-api/) — Webinar registration management
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Riverside Business API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Riverside Business API provides access to recording management, production workflows, studio and project organization, file downloads, transcription retrieval, export management, and webinar registration. Authentication uses API key bearer tokens available on Business plan. Base URL is https://platform.riverside.fm with v2 and v3 versioned paths.
+- [Riverside Agentic Access](https://apis.io/agentic-access/riverside/riverside-agentic-access/)
 
-- **Human URL:** [https://docs.riverside.fm/](https://docs.riverside.fm/)
-- **Base URL:** `https://platform.riverside.fm`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Podcast
-- Recording
-- Media
-- Video
-- Audio
-- Transcription
+- [Riverside Recording](https://apis.io/schemas/riverside/riverside-recording/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.riverside.fm/endpoints-reference/v3/)
-- [Getting Started](https://support.riverside.fm/hc/en-us/articles/9068592900381-Riverside-Business-API)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/openapi/riverside-business-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/rules/riverside-business-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-schema/riverside-recording-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Postman Collection](collections/riverside-business.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/riverside-business.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Riverside Recording Structure](https://apis.io/json-structure/riverside/riverside-recording-structure/)
 
-- [GitHub Organization](https://github.com/riversidefm)
-- [LinkedIn](https://www.linkedin.com/company/the-riverside-company)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Riverside Context](https://apis.io/jsonld/riverside/riverside-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Riverside Podcast Production Vocabulary](https://apis.io/vocabularies/riverside/riverside-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Riverside List Recordings Example](https://apis.io/examples/riverside/riverside-list-recordings-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Riverside Business API](https://apis.io/collections/riverside/open-riverside-business/)
+- [Riverside Business Exports API](https://apis.io/collections/riverside/open-riverside-exports-api/)
+- [Riverside Business Exports Productions API](https://apis.io/collections/riverside/open-riverside-productions-api/)
+- [Riverside Business Exports Recordings API](https://apis.io/collections/riverside/open-riverside-recordings-api/)
+- [Riverside Business Exports Webinars API](https://apis.io/collections/riverside/open-riverside-webinars-api/)
+- [Riverside Business Exports API](https://apis.io/collections/riverside/postman-riverside-exports-api/)
+- [Riverside Business Exports Productions API](https://apis.io/collections/riverside/postman-riverside-productions-api/)
+- [Riverside Business Exports Recordings API](https://apis.io/collections/riverside/postman-riverside-recordings-api/)
+- [Riverside Business Exports Webinars API](https://apis.io/collections/riverside/postman-riverside-webinars-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Riverside — business rules](https://apis.io/rules/riverside/riverside-business-rules/)
+- [Riverside — jsonschema rules](https://apis.io/rules/riverside/riverside-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Riverside Authentication](https://apis.io/security/riverside/riverside-authentication/)
+- [Riverside Domain Security](https://apis.io/security/riverside/riverside-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Riverside Plans Pricing](https://apis.io/plans/riverside/riverside-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Riverside Rate Limits](https://apis.io/rate-limits/riverside/riverside-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Riverside Finops](https://apis.io/finops/riverside/riverside-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://riverside.fm)
 - [Documentation](https://docs.riverside.fm/)
-- [Support](https://support.riverside.fm)
 - [Pricing](https://riverside.fm/pricing)
+- [Support](https://support.riverside.fm)
 - [Blog](https://riverside.fm/blog)
-- [Privacy Policy](https://riverside.fm/privacy-policy)
-- [Terms of Service](https://riverside.fm/terms-of-service)
-- [Sign Up](https://riverside.fm/signup)
-- [Login](https://riverside.fm/login)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/json-ld/riverside-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/riverside/refs/heads/main/vocabulary/riverside-vocabulary.yml)
-- [L L Ms Txt](https://docs.riverside.fm/llms.txt)
+- [Terms of service](https://riverside.fm/terms-of-service)
+- [Privacy policy](https://riverside.fm/privacy-policy)
+- [GitHub](https://github.com/riversidefm)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 42.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 59.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 41.7 |
+| Access clarity | 35.5 |
+
+**Agent readiness 19.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/riverside/](https://apis.io/providers/riverside/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Riverside: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/riverside/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
